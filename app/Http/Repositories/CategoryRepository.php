@@ -14,7 +14,7 @@ class CategoryRepository extends BaseRepository
         return Category::class;
     }
     public static function getCategoryForWeb(){
-        $result = Category::get();
+        $result = Category::where('status',ENABLE)->get()->toArray();
         return  $result;
     }
     public function getList($data){

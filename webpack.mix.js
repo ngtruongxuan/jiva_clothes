@@ -20,8 +20,13 @@ mix.js([
     .styles([
         'resources/assets/webs/css/app.css',
         'resources/assets/webs/css/header.css',
-    ], 'public/webs/css/app.css');
-// https://browsersync.io/docs/options
-mix.browserSync({
-    proxy: 'tx.me'
-});
+    ], 'public/webs/css/app.css')
+    .browserSync({
+        proxy: 'jivasport.me',
+      /*  files: [
+            "**!/!*.css",
+            "**!/!*.js",
+            "**!/!*.php"
+        ]*/
+    });
+mix.sourceMaps();
