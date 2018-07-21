@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 100130
  Source Host           : localhost:3306
- Source Schema         : tx_store
+ Source Schema         : jiva_sport
 
  Target Server Type    : MySQL
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 17/07/2018 12:36:50
+ Date: 21/07/2018 00:54:30
 */
 
 SET NAMES utf8mb4;
@@ -32,27 +32,20 @@ CREATE TABLE `categories`  (
   `updated_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES (1, 'Điện Thoại - Máy Tính Bảng', 0, 'Điện thoại', 'EN', '2018-06-21 13:42:42', 'xuan', '2018-06-27 15:19:35', 'xuan');
-INSERT INTO `categories` VALUES (2, 'Tivi - Thiết Bị Nghe Nhìn', 0, NULL, 'EN', '2018-06-20 11:25:57', 'xuan', '2018-06-21 13:49:31', 'xuan');
-INSERT INTO `categories` VALUES (3, 'Phụ Kiện - Thiết Bị Số', 0, NULL, 'DI', '2018-06-20 15:45:16', 'xuan', '2018-06-27 15:28:11', 'xuan');
-INSERT INTO `categories` VALUES (4, 'Laptop - Thiết Bị IT', 0, NULL, 'EN', '2018-06-20 16:42:39', 'xuan', '2018-06-20 16:42:39', 'xuan');
-INSERT INTO `categories` VALUES (5, 'Máy Ảnh - Quay Phim', 0, NULL, 'EN', '2018-06-20 16:42:46', 'xuan', '2018-06-20 16:42:46', 'xuan');
-INSERT INTO `categories` VALUES (6, 'Điện Gia Dụng - Điện Lạnh', 0, NULL, 'EN', '2018-06-20 17:13:11', 'xuan', '2018-06-20 17:13:11', 'xuan');
-INSERT INTO `categories` VALUES (7, 'Nhà Cửa Đời Sống', 0, NULL, 'EN', '2018-06-21 13:41:25', 'xuan', '2018-06-21 13:41:25', 'xuan');
-INSERT INTO `categories` VALUES (8, 'Hàng Tiêu Dùng - Thực phẩm', 0, NULL, 'EN', '2018-06-21 13:41:29', 'xuan', '2018-06-21 13:41:29', 'xuan');
-INSERT INTO `categories` VALUES (9, 'Đồ Chơi, Mẹ & Bé', 0, NULL, 'EN', '2018-06-21 13:41:32', 'xuan', '2018-06-21 13:41:32', 'xuan');
-INSERT INTO `categories` VALUES (10, 'Làm Đẹp - Sức Khỏe', 0, NULL, 'EN', '2018-06-21 13:41:35', 'xuan', '2018-06-21 13:41:35', 'xuan');
-INSERT INTO `categories` VALUES (11, 'Thời Trang - Phụ Kiện', 0, NULL, 'EN', '2018-06-21 13:41:41', 'xuan', '2018-06-21 13:41:41', 'xuan');
-INSERT INTO `categories` VALUES (12, 'Thể Thao - Dã Ngoại', 0, NULL, 'EN', '2018-06-21 13:41:44', 'xuan', '2018-06-21 13:41:44', 'xuan');
-INSERT INTO `categories` VALUES (13, 'Xe Máy, Ô tô, Xe Đạp', 0, NULL, 'EN', '2018-06-21 13:41:47', 'xuan', '2018-06-21 13:41:47', 'xuan');
-INSERT INTO `categories` VALUES (14, 'Sách, VPP & Quà Tặng', 0, NULL, 'EN', '2018-06-21 13:41:49', 'xuan', '2018-06-21 13:41:49', 'xuan');
-INSERT INTO `categories` VALUES (15, 'Voucher - Dịch Vụ - Thẻ Cào', 0, NULL, 'EN', '2018-06-21 13:41:51', 'xuan', '2018-06-21 13:41:51', 'xuan');
-INSERT INTO `categories` VALUES (17, 'Test 12356', 0, 'Test 123', 'DI', '2018-06-20 16:42:28', 'xuan', '2018-06-27 14:00:24', 'xuan');
+INSERT INTO `categories` VALUES (1, 'Giày Thể Thao', 0, 'Điện thoại', 'EN', '2018-06-21 13:42:42', 'xuan', '2018-06-27 15:19:35', 'xuan');
+INSERT INTO `categories` VALUES (2, 'Đồ Du Lịch', 0, NULL, 'EN', '2018-06-20 11:25:57', 'xuan', '2018-06-21 13:49:31', 'xuan');
+INSERT INTO `categories` VALUES (3, 'Nike', 0, NULL, 'DI', '2018-06-20 15:45:16', 'xuan', '2018-06-27 15:28:11', 'xuan');
+INSERT INTO `categories` VALUES (4, 'Adidas', 0, NULL, 'EN', '2018-06-20 16:42:39', 'xuan', '2018-06-20 16:42:39', 'xuan');
+INSERT INTO `categories` VALUES (5, 'Giày Cao Gót', 0, NULL, 'EN', '2018-06-20 16:42:46', 'xuan', '2018-06-20 16:42:46', 'xuan');
+INSERT INTO `categories` VALUES (6, 'New', 0, NULL, 'EN', '2018-06-20 17:13:11', 'xuan', '2018-06-20 17:13:11', 'xuan');
+INSERT INTO `categories` VALUES (18, 'Size 40', 1, NULL, 'EN', '2018-07-18 14:11:24', NULL, '2018-07-18 14:11:24', NULL);
+INSERT INTO `categories` VALUES (19, 'Size 42', 1, NULL, 'EN', '2018-07-18 14:11:34', NULL, '2018-07-18 14:11:34', NULL);
+INSERT INTO `categories` VALUES (20, '12', 18, NULL, 'EN', '2018-07-18 14:29:53', NULL, '2018-07-18 14:29:53', NULL);
 
 -- ----------------------------
 -- Table structure for code_details

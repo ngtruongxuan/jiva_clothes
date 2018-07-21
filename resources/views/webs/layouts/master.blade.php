@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         {{--<meta http-equiv="refresh" content="3" >--}}
         <link rel="icon" href="{{url('/')}}/image/favicon.jfif">
-        <title>Store | @yield('title')</title>
+        <title>Jiva Sport | @yield('title')</title>
 
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
