@@ -11,13 +11,13 @@
             <div class="col-md-6">
                 <div class="form-group col-md-12">
                     <label class="col-sm-6">Category Name</label>
-                    <input class="col-sm-6" id="txt_categoryName_search" value="">
+                    <input class="col-sm-6" style="width: 100%" id="txt_categoryName_search" value="">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group col-md-12">
                     <label class="col-sm-6">Description</label>
-                    <input class="col-sm-6" id="txt_note_search" value="">
+                    <input class="col-sm-6" style="width: 100%" id="txt_note_search" value="">
                 </div>
             </div>
             <div class="col-md-6">
