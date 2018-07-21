@@ -61,6 +61,11 @@
         <script src="{{module_path()}}/toastr/toastr.js"></script>
         <!-- End Toastr -->
     </head>
+    <style>
+        .row{
+            margin-bottom: 5px;
+        }
+    </style>
     <body class="hold-transition skin-blue sidebar-mini fixed">
         <div id="loader-wrapper">
             <div id="loader"></div>
