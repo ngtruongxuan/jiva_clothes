@@ -1,5 +1,6 @@
 <html>
     <header>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{module_path()}}/bootstrap/dist/css/bootstrap.min.css">
     </header>
     <body>
@@ -11,7 +12,7 @@
                 <input style="margin-bottom: 10px" type="text" class="form-control" name="username" placeholder="Account" required="" autofocus="" />
                 <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
                 <label class="checkbox" style="margin-left: 20px;float: left;">
-                    <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+                    <input type="checkbox" value="remember-me" id="rememberMe" name="remember"> Remember me
                 </label>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             </form>
