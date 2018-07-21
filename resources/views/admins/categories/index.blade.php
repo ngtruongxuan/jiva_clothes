@@ -43,8 +43,8 @@
         <button type="btn_search" class="btn btn-primary btn-sm" onclick="searchCategory()">Search</button>
     </div>
     <br>
-    <div style="background-color: white">
-        <table id="example" class="table table-striped table-bordered dt-responsive" style="width:100%"></table>
+    <div style="background-color: white;">
+        <table id="category_grid" class="table table-striped table-bordered dt-responsive" style="width:100%"></table>
     </div>
 
     <script>
@@ -58,7 +58,11 @@
             loadpopup('category/detail?id='+id,'<b>Detail</b>','60%',false);
         }
         $(document).ready(function() {
-            categoryTbl = $('#example').DataTable({
+            categoryTbl = $('#category_grid').DataTable({
+                scrollY:        true,
+                scrollX:        true,
+                scrollCollapse: true,
+                fixedColumns: true,
                 "searching": false,
                 "dom": "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i> <'col-sm-2'l><'col-sm-5'p>>",
                 "ajax": {
