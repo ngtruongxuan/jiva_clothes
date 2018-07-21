@@ -33,7 +33,8 @@
             padding: 15px 35px 45px;
             margin: 0 auto;
             background-color: #fff;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
 
         .form-signin-heading,
         .checkbox {
