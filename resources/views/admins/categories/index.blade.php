@@ -6,24 +6,21 @@
 @section('parent2', 'Master Data')
 @section('parent3', 'Category')
 @section('content')
+    <style>
+        .row{
+            margin-bottom: 5px;
+        }
+    </style>
     <div id="frm_searchCategory">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group col-md-12">
-                    <label class="col-sm-6">Category Name</label>
-                    <input class="col-sm-6" style="width: 100%" id="txt_categoryName_search" value="">
+                <div class="row">
+                    <label class="col-xs-6">Category Name</label>
+                    <input class="col-xs-6"id="txt_categoryName_search" value="">
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group col-md-12">
-                    <label class="col-sm-6">Description</label>
-                    <input class="col-sm-6" style="width: 100%" id="txt_note_search" value="">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group col-md-12">
-                    <label class="col-sm-6">Status</label>
-                    <div class="col-sm-6" style="padding-left: 0px; padding-right: 0px; height: 30px;">
+                <div class="row">
+                    <label class="col-xs-6">Status</label>
+                    <div class="col-xs-6" style="padding-left: 0px; padding-right: 0px; height: 30px;">
                         <select class="form-control" id="cbo_status_search" style="padding-top: 2px; padding-bottom: 2px; height: 29px;">
                             <option value="" selected="">Select a status</option>
                             @foreach($statusList as $item)
@@ -31,6 +28,12 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label class="col-xs-6">Description</label>
+                    <input class="col-xs-6" id="txt_note_search" value="">
                 </div>
             </div>
         </div>
