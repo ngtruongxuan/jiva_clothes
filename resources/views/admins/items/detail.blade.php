@@ -221,7 +221,7 @@
                 data: form_data,
                 type: 'post',
                 success: function (res) {
-                    console.log(res);
+                    // console.log(res);
                     if(res['status']){
                         backToIndex();
                         toastr.success(res['message']);

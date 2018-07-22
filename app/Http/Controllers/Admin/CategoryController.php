@@ -51,7 +51,18 @@ class CategoryController extends BaseController {
         $name = $this->request->get('category_name');
         $status = $this->request->get('status');
         $note = $this->request->get('note');
-        $dataIns = ['category_name'=>$name,'status'=>$status,'note'=>$note];
+        $parentId = $this->request->get('parent_id');
+        $icon = $this->request->get('icon');
+        $dataIns = [
+            'category_name'=>$name,
+            'status'=>$status,
+            'note'=>$note,
+            'parent_id'=>$parentId,
+            'icon'=>$icon
+        ];
+        if(empty($name)){
+            return $this->respondForward(['message'=>'Category Name can not null','data'=>[],'status'=>false]);
+        }
         if(!empty($id)){
             $category = $this->repos->find($id);
             if($category){
@@ -63,5 +74,29 @@ class CategoryController extends BaseController {
             $this->repos->create($dataIns);
             return $this->respondForward(['message'=>'Category was created successful','data'=>null,'status'=>true]);
         }
+    }
+    public function getOption(){
+        $data = $this->request->all();
+        $catogories = $this->repos->getCategoryOption($data);
+        $res = self::recursiveCategoryOption($catogories);
+        $res[]=['id'=>0,'text'=>"No parent",'parent_id'=>0];
+        $arr = [];
+        foreach ($res as $item){
+            $arr[$item['id']]=$item;
+        }
+        sort ($arr);
+        $res = array_values($arr);
+        return response()->json($res);
+    }
+    public function recursiveCategoryOption($data,$parent_id=0){
+        $temp_array = array();
+        foreach ($data as $k=>$v) {
+            if ($v['parent_id'] == $parent_id) {
+                $v['children'] = self::recursiveCategory($data, $v['id']);
+                $temp_array[] = $v;
+                unset($data[$k]);
+            }
+        }
+        return $temp_array;
     }
 }

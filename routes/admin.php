@@ -112,7 +112,7 @@ $router->group([
 
 $router->group([
     'prefix'        =>  'category',
-    'middleware'    =>  ['auth.admin'],
+//    'middleware'    =>  ['auth.admin'],
 ], function($router){
     $router->get('',[
         'as'    =>  'admin.category.index',
@@ -137,6 +137,10 @@ $router->group([
     $router->get('list-web',[
         'as'     =>  'admin.category.web',
         'uses'   =>  'CategoryController@getCategoryForWeb'
+    ]);
+    $router->get('option',[
+        'as'    =>  'admin.category.option',
+        'uses'  =>  'CategoryController@getOption'
     ]);
 });
 

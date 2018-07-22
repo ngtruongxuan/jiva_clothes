@@ -51,6 +51,11 @@ class UserController extends BaseController {
         if($this->request->hasFile('image')){
             $file = Helpers::uploadImage($this->request->file('image'),PATH_IMAGE_USER,$userName."_");
         }
+        //Check Exist user name
+        $isUser = $this->repos->searchUser(['userName'=>$userName]);
+        if(count($isUser)>0){
+            $error = ['status'=>false,'message'=>"User existed."];
+        }
         if(empty($user_id)){
             $pass = $this->request->get('password')??'12345';
             $dataIns = [
@@ -68,6 +73,7 @@ class UserController extends BaseController {
         }
         else{
             $dataUpdate = [
+                'username'=>$userName,
                 'first_name'=>$this->request->get('first_name'),
                 'last_name'=>$this->request->get('last_name'),
                 'email'=>$this->request->get('email')

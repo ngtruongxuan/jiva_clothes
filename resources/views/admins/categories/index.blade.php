@@ -49,13 +49,14 @@
 
     <script>
         $('#btn_create').on('click',function(){
-            loadpopup('category/detail','<b>New</b>','60%',false);
+            document.location.href="{!! route('admin.category.detail'); !!}";
         });
         function searchCategory(){
             categoryTbl.ajax.reload( null, false );
         }
         function openCategoryDetail(id) {
-            loadpopup('category/detail?id='+id,'<b>Detail</b>','60%',false);
+            url = "{{route('admin.category.detail')}}"+'?id='+id;
+            document.location.href=url;
         }
         $(document).ready(function() {
             categoryTbl = $('#category_grid').DataTable({
@@ -72,7 +73,6 @@
                     "dataType":'json',
                     "dataSrc":function(res){
                         if(res.status){
-                            console.log(res.data);
                             return res.data;
                         }
                     },
@@ -122,6 +122,16 @@
                     //     }
                     // },
                     {title:"Status",data:'status_name'},
+                    {title:"Parent",data:'parent_name'},
+                    {title: "Icon",
+                        data: "icon",
+                        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                            if(oData.icon) {
+                                // $(nTd).html("<a href='/admin/category?"+oData.id+"'>"+oData.category_name+"</a>");
+                                $(nTd).html('<i class="fa '+oData.icon+'"</i>');
+                      }
+                        }
+                    },
                     {title:"Description",data:'note'},
                     {title:"Created at",data:'created_at'},
                     {title:"Created by",data:'created_by'},
@@ -131,6 +141,12 @@
                 "fnCreatedRow": function (row, data, index) {
                     $('td', row).eq(0).html(index + 1);
                 },
+                'columnDefs': [
+                    {
+                        "targets": 4, // your case first column
+                        "className": "text-center",
+                        // "width": "4%"
+                }],
                 select: true,
                 // "order": [[1, 'asc']]
             });
