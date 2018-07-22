@@ -157,14 +157,14 @@
         text-decoration-line: none;
     }
     .top-header .container{
-        line-height: 100px;
+        /*line-height: 100px;*/
     }
     .top-header .container>div{
         display: inline-block;
         margin-left: 20px;
     }
     .top-header{
-        height: 100px;
+        height: auto;
         position: relative;
     }
     .top-header-item{
@@ -202,15 +202,21 @@
 </style>
 <script>
     $(document).ready(function() {
+        width = $(window).width();
+        $(window).resize(function(){
+            if(width<1200){
+                $('.header-nav').css("position","relative");
+                $('.header-nav').css("width","100%");
+            }
+        });
         // var headerTop = $('#header-nav').offset().top;
         // var headerBottom = headerTop + 120; // Sub-menu should appear after this distance from top.
         $(window).scroll(function () {
             var scrollTop = $(window).scrollTop(); // Current vertical scroll position from the top
-            console.log(scrollTop);
             if (scrollTop > 100) { // Check to see if we have scrolled more than headerBottom
-                $('.header-nav').css("position","fixed");
-                $('.header-nav').css("top","0px");
-                $('.header-nav').css("width","100%");
+                // $('.header-nav').css("position","fixed");
+                // $('.header-nav').css("top","0px");
+                // $('.header-nav').css("width","100%");
             } else {
                 $('.header-nav').css("position","relative");
                 $('.header-nav').css("width","100%");
