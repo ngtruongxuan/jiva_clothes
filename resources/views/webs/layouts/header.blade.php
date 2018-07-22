@@ -4,7 +4,7 @@
 <div class="top-header">
     <div class="container">
         <div class="cp-icon"><a href="/" style="margin-right: 30px;">Jiva</a></div>
-        <div class="frm-search" style="width: 35%">
+        <div class="frm-search">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Bạn cần tìm gì ?" aria-describedby="basic-addon2">
                 <span class="input-group-addon" id="basic-addon2" style="cursor: pointer"><i class="fa fa-search" aria-hidden="true"></i></span>
