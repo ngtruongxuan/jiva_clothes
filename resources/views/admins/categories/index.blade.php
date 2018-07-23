@@ -145,8 +145,8 @@
                     },
                     {title:"Priority",data:'priority'},
                     {title:"Description",data:'note'},
-                    {title:"Created at",data:'created_at'},
-                    {title:"Created by",data:'created_by'},
+                   /* {title:"Created at",data:'created_at'},
+                    {title:"Created by",data:'created_by'},*/
                     {title:"Updated at",data:'updated_at'},
                     {title:"Updated by",data:'updated_by'}
                 ],
