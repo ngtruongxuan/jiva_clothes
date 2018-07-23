@@ -37,7 +37,11 @@
                         <div class="nav-menu-content">
                             <a href="/">
                                 <div>
-                                    <i class="fa {{$item['icon']}}"></i>
+                                    @if(!empty($item['thunbnail']))
+                                        <img src="{{$item['thunbnail']}}">
+                                    @else
+                                        <i class="fa {{$item['icon']}}"></i>
+                                    @endif
                                 </div>
                                 <span style="display: block">{{$item['category_name']}}</span>
                             </a>
@@ -96,6 +100,7 @@
         margin: 0px 10px;
         padding: 5px 0px;
         text-align: center;
+        height: 34px;
     }
     .header-nav .nav-menu-content a span{
         text-align: center;
@@ -109,6 +114,8 @@
     .header-nav .nav-menu-content a{
         color: black;
         text-decoration-line: none;
+        width: auto;
+        word-spacing: -1px;
     }
     .header-nav .nav-menu-content:hover >a{
         background: black;
@@ -120,8 +127,8 @@
         color:white;
     }
     .header-nav .nav-menu-content{
-        width: 100px;
-        height: 60px;
+        width: 130px;
+        /*height: 60px;*/
         font-size: 14px;
         cursor: pointer;
     }

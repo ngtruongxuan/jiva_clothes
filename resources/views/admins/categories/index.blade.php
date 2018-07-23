@@ -63,8 +63,10 @@
                 scrollY:        true,
                 scrollX:        true,
                 scrollCollapse: true,
-                fixedColumns: true,
-                "searching": false,
+                // fixedColumns: true,
+                // "searching": false,
+                "ordering": false,
+                "autoWidth": false,
                 "dom": "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i> <'col-sm-2'l><'col-sm-5'p>>",
                 "ajax": {
                     "url": "{{route('admin.category.list')}}",
@@ -105,22 +107,22 @@
                             }
                         }
                     },
-                    // {
-                    //     name: "Status 2",
-                    //     data: "status",
-                    //     fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    //         if (oData.status == 'EN') {
-                    //             $html = '<label class="switch">\n' +
-                    //                 '  <input type="checkbox" checked>\n' +
-                    //                 '  <span class="slider round"></span>\n' +
-                    //                 '</label>';
-                    //             $(nTd).html('<input type="checkbox" checked data-toggle="toggle">');
-                    //         }
-                    //         else{
-                    //             $(nTd).html('<input type="checkbox" data-toggle="toggle">');
-                    //         }
-                    //     }
-                    // },
+                    /*{
+                        name: "Status 2",
+                        data: "status",
+                        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                            if (oData.status == 'EN') {
+                                $html = '<label class="switch">\n' +
+                                    '  <input type="checkbox" checked>\n' +
+                                    '  <span class="slider round"></span>\n' +
+                                    '</label>';
+                                $(nTd).html('<input type="checkbox" checked data-toggle="toggle">');
+                            }
+                            else{
+                                $(nTd).html('<input type="checkbox" data-toggle="toggle">');
+                            }
+                        }
+                    },*/
                     {title:"Status",data:'status_name'},
                     {title:"Parent",data:'parent_name'},
                     {title: "Icon",
@@ -132,6 +134,16 @@
                       }
                         }
                     },
+                    {title: "Thunbnail",
+                        data: "thunbnail",
+                        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                            if(oData.thunbnail) {
+                                // $(nTd).html("<a href='/admin/category?"+oData.id+"'>"+oData.category_name+"</a>");
+                                $(nTd).html('<img src="'+oData.thunbnail+'"/>');
+                            }
+                        }
+                    },
+                    {title:"Priority",data:'priority'},
                     {title:"Description",data:'note'},
                     {title:"Created at",data:'created_at'},
                     {title:"Created by",data:'created_by'},
@@ -142,14 +154,31 @@
                     $('td', row).eq(0).html(index + 1);
                 },
                 'columnDefs': [
+                    { "width": "12%", "targets": 1,},
                     {
                         "targets": 4, // your case first column
                         "className": "text-center",
                         // "width": "4%"
-                }],
+                    },
+                    {
+                        "targets": 5, // your case first column
+                        "className": "text-center",
+                        // "width": "4%"
+                    }
+                ],
                 select: true,
                 // "order": [[1, 'asc']]
             });
         });
     </script>
+    <style>
+        table{
+            margin: 0 auto;
+            width: 100%;
+            clear: both;
+            border-collapse: collapse;
+            table-layout: fixed; // ***********add this
+            word-wrap:break-word; // ***********and this
+        }
+    </style>
 @endsection

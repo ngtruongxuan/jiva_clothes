@@ -11,10 +11,53 @@
 
 <link rel="stylesheet" type="text/css" href="{{module_path('/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css')}}">
 <script type="text/javascript" src="{{module_path('/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js')}}"></script>
+<style type="text/css">
+    .row{
+        margin-bottom: 5px;
+    }
+    #frm_uploadFile{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        overflow: hidden;
+        background-color: #ffffff;
+        color: #ecf0f1;
+    }
+    #frm_uploadFile img{
+        width:100%;
+        height:100%;
+    }
+    #frm_uploadFile label{
+        position: absolute;
+        z-index: 5;
+        opacity: 0.8;
+        cursor: pointer;
+        background-color: #bdc3c7;
+        width: 50px;
+        height: 12px;
+        font-size: 5px;
+        line-height: 12px;
+        text-transform: uppercase;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+        text-align: center;
+    }
+</style>
 <form autocomplete="off" id="frm_categoryDetail">
     <input type="hidden" id="txt_id" name="id" value="{{isset($data->id)?$data->id:''}}">
+    <?php $thunbnail = isset($data->thunbnail)?$data->thunbnail:''?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-2">
+            <div id="frm_uploadFile">
+                <img id="imageView" src="{{empty($thunbnail)?URL::to('/').'/image/no_image.jpg':$thunbnail}}">
+                <label id="lbl_image" title="{{!empty($thunbnail)?$thunbnail:'No file select'}}">Choose file...</label>
+                <input type="file" id="image" name="thunbnail" onchange="readURL(this)" style="display: none" value="{{$thunbnail}}">
+            </div>
+        </div>
+        <div class="col-md-5">
             <div class="row">
                 <label class="col-xs-4">Category name</label>
                 <div class="col-xs-8">
@@ -42,7 +85,13 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
+            <div class="row">
+                <label class="col-xs-4">Priority</label>
+                <div class="col-xs-8">
+                    <input id="priority" name="priority" value="{{isset($data->priority)?$data->priority:''}}" style="width: 100%">
+                </div>
+            </div>
             <div class="row">
                 <label class="col-xs-4">Parent</label>
                 <div class="col-xs-8">
@@ -65,12 +114,24 @@
         </div>
     </div>
 
+
     <div style="text-align: center">
         <button id='btn_save' type="button" class="btn btn-success btn-sm" >Save</button>
         <button id='btn_cancel' type="button" class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">Cancel</button>
     </div>
 </form>
 <script>
+    $('#frm_uploadFile label').click(function(){ $('#image').trigger('click');});
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imageView').attr('src', e.target.result);
+                $('#lbl_image').attr('title', input.files[0].name);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     $('.icp').iconpicker({
         hideOnSelect: true
     });

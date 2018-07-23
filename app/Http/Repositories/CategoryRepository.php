@@ -27,7 +27,7 @@ class CategoryRepository extends BaseRepository
         return  $res;
     }
     public static function getCategoryForWeb(){
-        $result = Category::where('status',ENABLE)->get()->toArray();
+        $result = Category::where('status',ENABLE)->orderBy('priority')->get()->toArray();
         return  $result;
     }
     public function getList($data){
@@ -46,6 +46,9 @@ class CategoryRepository extends BaseRepository
                 DB::raw('pr.category_name as parent_name')
             ])
             ->leftJoin('categories as pr','pr.id','categories.parent_id')
+            ->orderBy('priority','ASC')
+            ->orderBy('parent_id','ASC')
+            ->orderBy('category_name','ASC')
             ->get();
         return $res;
     }

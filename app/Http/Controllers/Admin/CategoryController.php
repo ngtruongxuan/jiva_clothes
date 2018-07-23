@@ -53,13 +53,22 @@ class CategoryController extends BaseController {
         $note = $this->request->get('note');
         $parentId = $this->request->get('parent_id');
         $icon = $this->request->get('icon');
+        $priority = $this->request->get('priority');
+        $thunbnail = null;
+        if($this->request->hasFile('thunbnail')){
+            $thunbnail = Helpers::uploadImage($this->request->file('thunbnail'),PATH_IMAGE_ITEM,$id.'_');
+        }
         $dataIns = [
             'category_name'=>$name,
             'status'=>$status,
             'note'=>$note,
             'parent_id'=>$parentId,
-            'icon'=>$icon
+            'icon'=>$icon,
+            'priority'=>$priority
         ];
+        if(!empty($thunbnail) && $thunbnail['status'] && !empty($thunbnail['url'])){
+            $dataIns['thunbnail']=$thunbnail['url'];
+        }
         if(empty($name)){
             return $this->respondForward(['message'=>'Category Name can not null','data'=>[],'status'=>false]);
         }
