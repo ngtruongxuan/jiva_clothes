@@ -6,13 +6,15 @@
 @section('parent2', 'Master Data')
 @section('parent3', 'Item')
 @section('content')
-<form {{--method="post" action="{{route('admin.user.save')}}"--}} autocomplete="off" id="frm_userDetail" enctype="multipart/form-data">
+<form {{--method="post" action="{{route('admin.user.save')}}"--}} autocomplete="off" id="frm_userDetail">
     {{ csrf_field() }}
     <input type="hidden" id="user_id" name="id" value="{{isset($data->id)?$data->id:''}}">
     <div class="row">
-        <div class="col-md-3">
-            <img id="image" src="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}" alt="your image" height="180" width="200" style="margin-bottom: 10px;"/>
-            <input type='file' id="imgInp" name="image" value="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}"/>
+        <div class="col-md-3" style="text-align: center">
+            <div>
+                <img id="image" src="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}" alt="your image" height="180" width="200" style="margin-bottom: 10px;"/>
+                <input type='file' id="imgInp" name="image" value="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}" />
+            </div>
         </div>
         <div class="col-md-9">
             <div class="row">

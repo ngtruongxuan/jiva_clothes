@@ -6,15 +6,12 @@
 @section('parent2', 'Master Data')
 @section('parent3', 'Category')
 @section('content')
-<form autocomplete="off">
-    <link rel="stylesheet" type="text/css" href="{{plugin_path('/easyui/themes/bootstrap/easyui.css')}}">
-    {{--<link rel="stylesheet" type="text/css" href="{{plugin_path('/easyui/themes/icon.css')}}">--}}
-    <script type="text/javascript" src="{{plugin_path('/easyui/jquery.easyui.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{plugin_path('/easyui/themes/bootstrap/easyui.css')}}">
+<script type="text/javascript" src="{{plugin_path('/easyui/jquery.easyui.min.js')}}"></script>
 
-
-    <link rel="stylesheet" type="text/css" href="{{module_path('/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css')}}">
-    <script type="text/javascript" src="{{module_path('/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js')}}"></script>
-
+<link rel="stylesheet" type="text/css" href="{{module_path('/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css')}}">
+<script type="text/javascript" src="{{module_path('/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js')}}"></script>
+<form autocomplete="off" id="frm_categoryDetail">
     <input type="hidden" id="txt_id" name="id" value="{{isset($data->id)?$data->id:''}}">
     <div class="row">
         <div class="col-md-6">
@@ -49,14 +46,14 @@
             <div class="row">
                 <label class="col-xs-4">Parent</label>
                 <div class="col-xs-8">
-                    <input id="parent_id" value="{{isset($data->parent_id)?$data->parent_id:''}}" style="width: 100%">
+                    <input id="parent_id" name="parent_id" value="{{isset($data->parent_id)?$data->parent_id:''}}" style="width: 100%">
                 </div>
             </div>
             <div class="row">
                 <label class="col-xs-4">Icon</label>
                 <div class="col-xs-8">
                     <div class="input-group iconpicker-container">
-                        <input id="icon" class="form-control icp icp-auto iconpicker-element iconpicker-input" value="{{isset($data->icon)?$data->icon:''}}" style="width: 100%">
+                        <input id="icon" name="icon" class="form-control icp icp-auto iconpicker-element iconpicker-input" value="{{isset($data->icon)?$data->icon:''}}" style="width: 100%">
                         @if(isset($data->icon))
                             <span class="input-group-addon"><i class="fa {{$data->icon}}"></i></span>
                         @else
@@ -91,7 +88,7 @@
         backToIndex();
     });
     $('#btn_save').click(function(){
-        var data = {
+        /*var data = {
             id  : $('#txt_id').val(),
             category_name : $('#txt_categoryName_detail').val(),
             note : $('#txt_note_detail').val(),
@@ -113,6 +110,32 @@
                 else{
                     toastr.error(res['message']);
                 }
+            }
+        });*/
+
+        var frm = document.getElementById('frm_categoryDetail');
+        var form_data = new FormData(frm);
+
+        $.ajax({
+            url:"{{route('admin.category.save')}}",
+            // dataType: 'text', // what to expect back from the PHP script
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function (res) {
+                // console.log(res);
+                if(res['status']){
+                    backToIndex();
+                    toastr.success(res['message']);
+                }
+                else{
+                    toastr.error(res['message']);
+                }
+            },
+            error: function (res) {
+                console.log(res);
             }
         });
 
