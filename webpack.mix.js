@@ -13,20 +13,20 @@ let mix = require('laravel-mix');
 
 /*mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');*/
-mix.js([
+/*mix.js([
         // 'resources/assets/js/app.js',
         'resources/assets/webs/js/app.js',
     ], 'public/webs/js/app.js')
     .styles([
         'resources/assets/webs/css/app.css',
         'resources/assets/webs/css/header.css',
-    ], 'public/webs/css/app.css')
-    .browserSync({
-        proxy: 'jivasport.me',
-      /*  files: [
-            "**!/!*.css",
-            "**!/!*.js",
-            "**!/!*.php"
-        ]*/
-    });
+    ], 'public/webs/css/app.css');*/
+mix.browserSync({
+    proxy: 'jivasport.me',
+    files: [
+        "**/*.css",
+        "**/*.js",
+        "**/*.php"
+    ]
+});
 mix.sourceMaps();
