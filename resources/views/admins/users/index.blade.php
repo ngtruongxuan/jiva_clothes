@@ -166,7 +166,7 @@
                         if(row['email'] != null && row['email']!=''){
                             email = row['email'];
                         }
-                        image = '{{url('/')}}/image/avatar.jpeg';
+                        image = '{{url('/')}}/image/no_image.jpg';
                         if(row['image'] != null && row['image']!=''){
                             image = row['image'];
                         }

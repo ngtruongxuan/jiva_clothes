@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-3" style="text-align: center">
             <div>
-                <img id="image" src="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}" alt="your image" height="180" width="200" style="margin-bottom: 10px;"/>
+                <img id="image" src="{{!empty($data->image)?$data->image:URL::to('/').'/image/no_image.jpg'}}" alt="your image" height="180" width="200" style="margin-bottom: 10px;"/>
                 <input type='file' id="imgInp" name="image" value="{{!empty($data->image)?$data->image:url('/').'/image/avatar.jpeg'}}" />
             </div>
         </div>

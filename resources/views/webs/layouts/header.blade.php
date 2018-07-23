@@ -100,7 +100,7 @@
         margin: 0px 10px;
         padding: 5px 0px;
         text-align: center;
-        height: 34px;
+        height: 40px;
     }
     .header-nav .nav-menu-content a span{
         text-align: center;
