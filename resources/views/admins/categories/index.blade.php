@@ -154,17 +154,13 @@
                     $('td', row).eq(0).html(index + 1);
                 },
                 'columnDefs': [
+                    { "width": "5%", "targets": 0,"className": "text-center"},
                     { "width": "12%", "targets": 1,},
-                    {
-                        "targets": 4, // your case first column
-                        "className": "text-center",
-                        // "width": "4%"
-                    },
-                    {
-                        "targets": 5, // your case first column
-                        "className": "text-center",
-                        // "width": "4%"
-                    }
+                    { "width": "8%", "targets": 2,"className": "text-center"},
+                    { "targets": 4,"className": "text-center","width": "4%"},
+                    { "targets": 5,"className": "text-center","width": "10%"},
+                    { "targets": 6,"className": "text-center","width": "6%"},
+                    { "targets": 9,"className": "text-center","width": "10%"},
                 ],
                 select: true,
                 // "order": [[1, 'asc']]

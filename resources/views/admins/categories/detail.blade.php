@@ -11,6 +11,8 @@
 
 <link rel="stylesheet" type="text/css" href="{{module_path('/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css')}}">
 <script type="text/javascript" src="{{module_path('/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js')}}"></script>
+
+<script type="text/javascript" src="{{URL::to('/')}}/js/uploadMultiFile.js"></script>
 <style type="text/css">
     .row{
         margin-bottom: 5px;
@@ -44,6 +46,75 @@
         bottom: 0;
         margin: auto !important;
         text-align: center;
+    }
+
+    .fileinput-button {
+        top:5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fileinput-button input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        -ms-filter: 'alpha(opacity=0)';
+        font-size: 200px;
+        direction: ltr;
+        cursor: pointer;
+    }
+
+    .thumb {
+        height: 200px;
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    ul.thumb-Images li {
+        width: 100%;
+        float: left;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 10px;
+        /*height: 80px;*/
+    }
+
+    .img-wrap {
+        position: relative;
+        display: inline-block;
+        font-size: 0;
+        width: 100%;
+    }
+
+    .img-wrap .close {
+        padding-bottom: 4px !important;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        z-index: 100;
+        background-color: #D0E5F5;
+        padding: 5px 2px 2px;
+        color: #000;
+        font-weight: bolder;
+        cursor: pointer;
+        opacity: .5;
+        font-size: 23px;
+        line-height: 10px;
+        border-radius: 50%;
+    }
+
+    .img-wrap:hover .close {
+        opacity: 1;
+        background-color: #ff0000;
+    }
+
+    .FileNameCaptionStyle {
+        font-size: 12px;
+    }
+    #Filelist ul{
+        padding: 0px;
     }
 </style>
 <form autocomplete="off" id="frm_categoryDetail">
@@ -114,12 +185,23 @@
         </div>
     </div>
 
-
     <div style="text-align: center">
         <button id='btn_save' type="button" class="btn btn-success btn-sm" >Save</button>
         <button id='btn_cancel' type="button" class="btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">Cancel</button>
     </div>
+    <div class="row" id="multiImage">
+            <span class="btn btn-success fileinput-button" style="width: 100%">
+                <span>Add more Banner</span>
+                <input type="file" {{--name="files[]"--}} id="files" multiple accept="image/jpeg, image/png, image/gif," ><br />
+            </span>
+    <output id="Filelist"></output>
+    </div>
 </form>
+@if(isset($data->banners))
+    @foreach($data->banners as $item)
+        <script>RenderThumbnail(null,null,"{{$item->url}}")</script>
+    @endforeach
+@endif
 <script>
     $('#frm_uploadFile label').click(function(){ $('#image').trigger('click');});
     function readURL(input) {
@@ -176,7 +258,11 @@
 
         var frm = document.getElementById('frm_categoryDetail');
         var form_data = new FormData(frm);
-
+        form_data.append('image_remove',imageRemoves);
+        for(i = 0; i<arrPush.length; i++)
+        {
+            form_data.append("banners[]",arrPush[i]);
+        }
         $.ajax({
             url:"{{route('admin.category.save')}}",
             // dataType: 'text', // what to expect back from the PHP script

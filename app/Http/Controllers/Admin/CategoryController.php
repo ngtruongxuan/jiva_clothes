@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Http\Repositories\CategoryRepository;
 use App\Libraries\Helpers;
+use App\Models\CategoryBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,7 @@ class CategoryController extends BaseController {
         return view('admins.categories.detail',['data'=>$detail,'statusList'=>Helpers::convertCombo(STATUS_SYS)]);
     }
     public function save(){
+        $res = ['message'=>'Category Name can not null','data'=>[],'status'=>false];
         $id = $this->request->id??null;
         $name = $this->request->get('category_name');
         $status = $this->request->get('status');
@@ -77,12 +79,42 @@ class CategoryController extends BaseController {
             if($category){
                 $category->update($dataIns);
             }
-            return $this->respondForward(['message'=>'Category was updated successful','data'=>null,'status'=>true]);
+            $res =['message'=>'Category was updated successful','data'=>$category,'status'=>true];
+
         }
         else{
-            $this->repos->create($dataIns);
-            return $this->respondForward(['message'=>'Category was created successful','data'=>null,'status'=>true]);
+            $category = $this->repos->create($dataIns);
+            $res = ['message'=>'Category was created successful','data'=>$category,'status'=>true];
         }
+        if($category){
+            $urlFiles = [];
+            $id = $category->id;
+            if($this->request->hasFile('banners')){
+                $files = $this->request->file('banners');
+                $i = 0;
+                foreach ($files as $file){
+                    $i++;
+                    $url = Helpers::uploadImage($file,PATH_IMAGE_ITEM,$id.'_'.$i.'_');
+                    if($url['status']){
+                        $urlFiles[]=$url['url'];
+                    }
+                }
+            }
+            if(!empty($imageRemoves)){
+                $imageRemoves = explode(',',$imageRemoves);
+                foreach ($imageRemoves as $img){
+                    CategoryBanner::where('category_id',$id)->where('url',$img)->delete();
+                }
+            }
+            foreach ($urlFiles as $url){
+                CategoryBanner::create([
+                    'category_id'=>$id,
+                    'url'=>$url,
+                    'status'=>ENABLE
+                ]);
+            }
+        }
+        return $this->respondForward($res);
     }
     public function getOption(){
         $data = $this->request->all();
