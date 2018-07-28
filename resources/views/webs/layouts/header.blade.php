@@ -35,7 +35,7 @@
                 @foreach($categories as $item)
                     <li id="ctg_{{$item['id']}}">
                         <div class="nav-menu-content">
-                            <a href="{{route('web.category.index',['category'=>$item['id']])}}">
+                            <a href="{{route('web.category.index',['ct'=>$item['id'],'name'=>$item['category_name']])}}">
                                 <div>
                                     @if(!empty($item['thunbnail']))
                                         <img src="{{$item['thunbnail']}}" style="width: 30px; height: 30px">
@@ -51,7 +51,7 @@
                                 <ul>
                                     @foreach($item['childs'] as $sub)
                                         <li>
-                                            <a href="{{route('web.category.index',['category'=>$sub['id']])}}">
+                                            <a href="{{route('web.category.index',['ct'=>$sub['id'],'name'=>$sub['category_name']])}}">
                                                 <i class="fa fa-caret-right"></i>
                                                 <span>{{$sub['category_name']}}</span>
                                             </a>
