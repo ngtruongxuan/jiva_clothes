@@ -139,7 +139,7 @@
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                             if(oData.thunbnail) {
                                 // $(nTd).html("<a href='/admin/category?"+oData.id+"'>"+oData.category_name+"</a>");
-                                $(nTd).html('<img src="'+oData.thunbnail+'"/>');
+                                $(nTd).html('<img src="'+oData.thunbnail+'" style="height:30px; width: 30px;"/>');
                             }
                         }
                     },

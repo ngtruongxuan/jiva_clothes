@@ -92,6 +92,10 @@ class ItemController extends BaseController {
             if(!empty($imageRemoves)){
                 $imageRemoves = explode(',',$imageRemoves);
                 foreach ($imageRemoves as $img){
+                    try{
+                        unlink('../public'.$img);
+                    }
+                    catch (\Exception $e){}
                     ItemImage::where('item_id',$id)->where('url',$img)->delete();
                 }
             }

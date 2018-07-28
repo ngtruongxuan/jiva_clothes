@@ -56,9 +56,11 @@ class CategoryController extends BaseController {
         $parentId = $this->request->get('parent_id');
         $icon = $this->request->get('icon');
         $priority = $this->request->get('priority');
+        $imageRemoves = $this->request->get('image_remove');
         $thunbnail = null;
+//        dd($this->request->all());
         if($this->request->hasFile('thunbnail')){
-            $thunbnail = Helpers::uploadImage($this->request->file('thunbnail'),PATH_IMAGE_ITEM,$id.'_');
+            $thunbnail = Helpers::uploadImage($this->request->file('thunbnail'),PATH_IMAGE_CATEGORY,$id.'_');
         }
         $dataIns = [
             'category_name'=>$name,
@@ -94,7 +96,7 @@ class CategoryController extends BaseController {
                 $i = 0;
                 foreach ($files as $file){
                     $i++;
-                    $url = Helpers::uploadImage($file,PATH_IMAGE_ITEM,$id.'_'.$i.'_');
+                    $url = Helpers::uploadImage($file,PATH_IMAGE_CATEGORY,$id.'_'.$i.'_');
                     if($url['status']){
                         $urlFiles[]=$url['url'];
                     }
@@ -102,7 +104,15 @@ class CategoryController extends BaseController {
             }
             if(!empty($imageRemoves)){
                 $imageRemoves = explode(',',$imageRemoves);
+//                \File::Delete($imageRemoves);
                 foreach ($imageRemoves as $img){
+                    try{
+                        unlink('../public'.$img);
+                    }
+                    catch (\Exception $e){
+//                        echo $e->getMessage();
+                    }
+//                    \Storage::Delete('../public'.$img);
                     CategoryBanner::where('category_id',$id)->where('url',$img)->delete();
                 }
             }

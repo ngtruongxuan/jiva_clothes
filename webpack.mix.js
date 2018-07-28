@@ -23,10 +23,14 @@ let mix = require('laravel-mix');
     ], 'public/webs/css/app.css');*/
 mix.browserSync({
     proxy: 'jivasport.me',
+    // startPath: 'resources',
     files: [
-        "**/*.css",
-        "**/*.js",
-        "**/*.php"
+        "resources/**/*.css",
+        "resources/**/*.js",
+        "resources/**/*.php",
+        // "**/*.css",
+        // "**/*.js",
+        // "**/*.php"
     ]
 });
 mix.sourceMaps();

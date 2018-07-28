@@ -35,10 +35,10 @@
                 @foreach($categories as $item)
                     <li id="ctg_{{$item['id']}}">
                         <div class="nav-menu-content">
-                            <a href="/">
+                            <a href="{{route('web.category.index',['category'=>$item['id']])}}">
                                 <div>
                                     @if(!empty($item['thunbnail']))
-                                        <img src="{{$item['thunbnail']}}">
+                                        <img src="{{$item['thunbnail']}}" style="width: 30px; height: 30px">
                                     @else
                                         <i class="fa {{$item['icon']}}"></i>
                                     @endif
@@ -150,6 +150,7 @@
     .header-nav{
         background: #f7f7f7;
         position: relative;
+        z-index: 1000;
         /*height: 60px;*/
     }
     /*End content of menu*/
