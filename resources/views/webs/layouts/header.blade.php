@@ -51,7 +51,7 @@
                                 <ul>
                                     @foreach($item['childs'] as $sub)
                                         <li>
-                                            <a href="/">
+                                            <a href="{{route('web.category.index',['category'=>$sub['id']])}}">
                                                 <i class="fa fa-caret-right"></i>
                                                 <span>{{$sub['category_name']}}</span>
                                             </a>

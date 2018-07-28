@@ -15,12 +15,9 @@ class HomeController extends BaseController {
         $this->categoryRepo = $_categoryRepo;
 
     }
-    public function home(){
-//        return redirect('admin');
-        return view('webs.home',['category'=>[]]);
-    }
     public function getCategory(){
         $ctId = $this->request->get('category');
+        if(empty($ctId)) $ctId = 1;
         $category = $this->categoryRepo->find($ctId);
         return view('webs.home',['category'=>$category]);
     }
