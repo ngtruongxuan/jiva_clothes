@@ -4,7 +4,7 @@
 @section('action', 'Controller pannel')
 @section('content')
 <div style="height: 1200px" style="z-index: 500;position: relative;">
-    @if(count($category->banners))
+    @if(isset($category) && count($category->banners))
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
