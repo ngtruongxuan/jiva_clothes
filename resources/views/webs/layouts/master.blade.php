@@ -37,13 +37,13 @@
 
     </header>
     <style>
-        .container{
+        body{
             min-width: 1200px;
         }
     </style>
     <body>
         <!-- Header -->
-        <div class="header" style="width: 1200px;">
+        <div class="header">
             @include('webs.layouts.header')
         </div>
         <!-- End Header -->
