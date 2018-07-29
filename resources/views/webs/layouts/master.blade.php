@@ -38,7 +38,7 @@
     </header>
     <style>
         .container{
-            min-width: 970px;
+            min-width: 1200px;
         }
     </style>
     <body>
