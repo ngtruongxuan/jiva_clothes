@@ -11,8 +11,15 @@ let mix = require('laravel-mix');
  |
  */
 
-/*mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');*/
+mix.js([
+        'resources/assets/webs/js/app.js',
+    ], 'public/assets/webs/app.js');
+mix.sass('resources/assets/webs/css/app.scss', 'public/assets/webs/app.css');
+mix.sass('resources/assets/webs/css/header.scss', 'public/assets/webs/app.css');
+/*mix.sass([
+        'resources/assets/webs/css/app.scss',
+        'resources/assets/webs/css/header.scss'
+    ], 'public/assets/webs/css/app.css');*/
 /*mix.js([
         // 'resources/assets/js/app.js',
         'resources/assets/webs/js/app.js',
@@ -25,9 +32,10 @@ mix.browserSync({
     proxy: 'jivasport.me',
     // startPath: 'resources',
     files: [
-        "resources/**/*.css",
-        "resources/**/*.js",
-        "resources/**/*.php",
+        "resources/**",
+        // "resources/**/*.scss",
+        // "resources/**/*.js",
+        // "resources/**/*.php",
         // "**/*.css",
         // "**/*.js",
         // "**/*.php"
