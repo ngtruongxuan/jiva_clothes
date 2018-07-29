@@ -27,19 +27,20 @@
                <span><i class="fa fa-search"></i></span>
            </div>
         </div>
-        <div class="top-header-item right-side">
-            <span>
-                <i class="fa fa-shopping-bag"></i>
-            </span>
+        <div class="top-header-item">
+            <span><i class="fa fa-phone"></i></span>
         </div>
-        <div class="top-header-item right-side">
+        <div class="top-header-item">
             <span>
                 <i class="fa fa-building"></i>
             </span>
         </div>
-        <div class="top-header-item right-side">
-            <span><i class="fa fa-phone"></i></span>
+        <div class="top-header-item">
+            <span>
+                <i class="fa fa-shopping-bag"></i>
+            </span>
         </div>
+
     </div>
 </div>
 

@@ -43,9 +43,9 @@
     </style>
     <body>
         <!-- Header -->
-        <header>
+        <div class="header" style="width: 1200px;">
             @include('webs.layouts.header')
-        </header>
+        </div>
         <!-- End Header -->
         <div class="wrapper">
             <div class="container">
