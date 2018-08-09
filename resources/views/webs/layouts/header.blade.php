@@ -10,7 +10,7 @@
             <ul>
                 @foreach($categories as $item)
                     <li>
-                        <a href="{{route('web.category.index',['ct'=>$item['id'],'name'=>$item['category_name']])}}">
+                        <a href="{{route('web.category.index',['category_id'=>$item['id'],'name'=>$item['category_name']])}}">
                             <span>{{$item['category_name']}}</span>
                         </a>
                         @if($category->id == $item['id'])
@@ -51,7 +51,7 @@
                     <ul>
                         @foreach($item['childs'] as $sub)
                             <li>
-                                <a href="{{route('web.category.index',['ct'=>$sub['id'],'name'=>$sub['category_name']])}}">
+                                <a href="{{route('web.category.index',['category_id'=>$sub['id'],'name'=>$sub['category_name']])}}">
                                     <span>{{$sub['category_name']}}</span>
                                 </a>
                             </li>

@@ -15,7 +15,8 @@ mix.js([
         'resources/assets/webs/js/app.js',
     ], 'public/assets/webs/app.js');
 mix.sass('resources/assets/webs/css/app.scss', 'public/assets/webs/app.css');
-mix.sass('resources/assets/webs/css/header.scss', 'public/assets/webs/app.css');
+// mix.sass('resources/assets/webs/css/header.scss', 'public/assets/webs/app.css');
+// mix.sass('resources/assets/webs/css/category.scss', 'public/assets/webs/app.css');
 /*mix.sass([
         'resources/assets/webs/css/app.scss',
         'resources/assets/webs/css/header.scss'
