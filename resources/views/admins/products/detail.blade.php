@@ -1,10 +1,10 @@
 @extends('admins.layouts.master')
-@section('title', 'Item')
-@section('controller', 'Item')
+@section('title', 'Product')
+@section('controller', 'Product')
 @section('action'){{isset($data->id)?'Detail':'New'}}@endsection
 @section('parent', 'Home')
 @section('parent2', 'Master Data')
-@section('parent3', 'Item')
+@section('parent3', 'Product')
 @section('content')
     <style type="text/css">
         .row{
@@ -46,7 +46,7 @@
     <script type="text/javascript" src="{{URL::to('/')}}/node_modules/ckeditor-full/adapters/jquery.js"></script>
     <script type="text/javascript" src="{{URL::to('/')}}/js/uploadMultiFile.js"></script>
     <link rel="stylesheet" href="{{URL::to('/')}}/css/uploadMultiFile.css">
-    <form autocomplete="off" id="frm_item" name="frm_item">
+    <form autocomplete="off" id="frm_product" name="frm_product">
         <input type="hidden" id="txt_id" name="id" value="{{isset($data->id)?$data->id:''}}">
         <?php $image = isset($data->image)?$data->image:''?>
         <div class="row">
@@ -70,7 +70,7 @@
             <div class="col-md-9">
                 <div class="row">
                     <label class="col-xs-2">Name</label>
-                    <input class="col-xs-10" type="text" id="txt_itemName_detail" name="item_name" value="{{isset($data->item_name)?$data->item_name:''}}">
+                    <input class="col-xs-10" type="text" id="txt_productName_detail" name="product_name" value="{{isset($data->product_name)?$data->product_name:''}}">
                 </div>
                 <div class="row">
                     <label class="col-xs-2">Category</label>
@@ -102,7 +102,7 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                        <textarea type="text" id="txt_des_detail" name="des">{{isset($data->des)?$data->des:''}}</textarea>
+                        <textarea type="text" id="txt_desc_detail" name="desc">{{isset($data->desc)?$data->desc:''}}</textarea>
                     </div>
                 </div>
             </div>
@@ -159,7 +159,7 @@
             ] }
         ];
         /*ClassicEditor
-            .create( document.querySelector( '#txt_des_detail' ),{
+            .create( document.querySelector( '#txt_desc_detail' ),{
                 toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
                 ckfinder: {
                     uploadUrl: '/plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
@@ -171,7 +171,7 @@
             .catch( error => {
                 console.error( error );
             } );*/
-        $( '#txt_des_detail' ).ckeditor( function( textarea ) {},
+        $( '#txt_desc_detail' ).ckeditor( function( textarea ) {},
         {
             filebrowserBrowseUrl: '/plugin/ckfinder/ckfinder.html',
             filebrowserImageBrowseUrl: '/plugin/ckfinder/ckfinder.html?Type=Images',
@@ -181,7 +181,7 @@
             filebrowserWindowHeight : '700'
         });
         function backToIndex(){
-            document.location.href="{{route('admin.item.index')}}";
+            document.location.href="{{route('admin.product.index')}}";
         }
         $('#btn_cancel').click(function(){
             backToIndex();
@@ -189,20 +189,20 @@
         $('#btn_save').click(function(){
             var data = {
                 id  : $('#txt_id').val(),
-                item_name : $('#txt_itemName_detail').val(),
+                product_name : $('#txt_productName_detail').val(),
                 category_id : $('#cbo_category_detail').val(),
                 status : $('#cbo_status_detail').val(),
-                des : $('#txt_des_detail').val(),
+                desc : $('#txt_desc_detail').val(),
                 note : $('#txt_note_detail').val(),
             };
             // data = document.forms["frm_item"];
             // console.log($('#frm_item').serialize());
             // console.log($('#frm_item').serializeArray());
             // console.log(document.getElementById('image').files);
-            var frm_item = document.getElementById('frm_item');
-            var form_data = new FormData(frm_item);
+            var frm_product = document.getElementById('frm_product');
+            var form_data = new FormData(frm_product);
             form_data.append('image',document.getElementById('image').files);
-            form_data.append('des',$('#txt_des_detail').val());
+            form_data.append('desc',$('#txt_desc_detail').val());
             form_data.append('image_remove',imageRemoves);
            /* var ins = document.getElementById('files').files.length;
             for (var x = 0; x < ins; x++) {
@@ -213,7 +213,7 @@
                 form_data.append("files[]",arrPush[i]);
             }
             $.ajax({
-                url:"{{route('admin.item.save')}}",
+                url:"{{route('admin.product.save')}}",
                 // dataType: 'text', // what to expect back from the PHP script
                 cache: false,
                 contentType: false,
@@ -237,7 +237,7 @@
 
             /*$.ajax({
                 type:'post',
-                url:"{{route('admin.item.save')}}",
+                url:"{{route('admin.product.save')}}",
                 data:JSON.stringify(data),
                 dataType:'json',
                 contentType:'application/json',

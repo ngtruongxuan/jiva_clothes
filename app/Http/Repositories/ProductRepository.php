@@ -2,9 +2,9 @@
 namespace App\Http\Repositories;
 
 use App\Models\Category;
-use App\Models\Item;
+use App\Models\Product;
 
-class ItemRepository extends BaseRepository
+class ProductRepository extends BaseRepository
 {
     /**
      * get model
@@ -12,7 +12,7 @@ class ItemRepository extends BaseRepository
      */
     public function model()
     {
-        return Item::class;
+        return Product::class;
     }
     public function getList($data = null){
     	$res = $this->model->get();
@@ -35,23 +35,23 @@ class ItemRepository extends BaseRepository
         return $res;
     }
 
-    public function getItemForHome(){
+    public function getProductForHome(){
         $categoryNoChild = Category::where('parent_id',0)->get();
         $arrTop10 = [];
         foreach ($categoryNoChild as $category){
             $temp = [
                 'category_name'=>$category->category_name,
                 'category_id'=>$category->id,
-                'item'=>[]
+                'products'=>[]
             ];
-            $temp['item']=$this->model->where('category_id',$category->id)->get();
+            $temp['products']=$this->model->where('category_id',$category->id)->get();
         }
         $query = $this->model;
 
         $res = $query->get();
         return $res;
     }
-    public function getItemByCategory($categoryId){
+    public function getProductByCategory($categoryId){
         $categoryList = $this->getAllChildOfCategory($categoryId);
         $query = $this->model->select([
                '*'

@@ -11,3 +11,7 @@ $router->get('/category',[
     'as'=>'web.category.index',
     'uses'=>'HomeController@getCategory'
 ]);
+$router->get('/product',[
+    'as'=>'web.product.detail',
+    'uses'=>'ProductController@detail'
+]);

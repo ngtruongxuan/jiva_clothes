@@ -1,17 +1,17 @@
 @extends('admins.layouts.master')
-@section('title', 'Item')
-@section('controller', 'Item')
+@section('title', 'Product')
+@section('controller', 'Product')
 @section('action', 'Index')
 @section('parent', 'Home')
 @section('parent2', 'Master Data')
-@section('parent3', 'Item')
+@section('parent3', 'Product')
 @section('content')
     <div id="frm_search">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <label class="col-xs-6">Item Name</label>
-                    <input class="col-xs-6" id="txt_itemName_search" value="">
+                    <label class="col-xs-6">Product Name</label>
+                    <input class="col-xs-6" id="txt_productName_search" value="">
                 </div>
 
                 <div class="row">
@@ -50,11 +50,11 @@
     </div>
     <br>
     <div style="background-color: white">
-        <table id="item_grid" class="table table-striped table-bordered dt-responsive" style="width:100%"></table>
+        <table id="product_grid" class="table table-striped table-bordered dt-responsive" style="width:100%"></table>
     </div>
     <script>
         $('#btn_create').on('click',function(){
-            document.location.href="{!! route('admin.item.detail'); !!}";
+            document.location.href="{!! route('admin.product.detail'); !!}";
             {{--location.href="{{route('admin.item.detail')}}"--}}
 {{--            window.location.assign('{{route('admin.item.detail')}}');--}}
             // loadpopup('item/detail','<b>New</b>','60%',true);
@@ -63,12 +63,12 @@
             categoryTbl.ajax.reload( null, false );
         }
         function openDetail(id) {
-            url = "{{route('admin.item.detail')}}"+'?id='+id;
+            url = "{{route('admin.product.detail')}}"+'?id='+id;
             document.location.href=url;
             // loadpopup('item/detail?id='+id,'<b>Detail</b>','60%',false);
         }
         $(document).ready(function() {
-            categoryTbl = $('#item_grid').DataTable({
+            categoryTbl = $('#product_grid').DataTable({
                 scrollY:        true,
                 scrollX:        true,
                 scrollCollapse: true,
@@ -76,7 +76,7 @@
                 "searching": false,
                 "dom": "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i> <'col-sm-2'l><'col-sm-5'p>>",
                 "ajax": {
-                    "url": "{{route('admin.item.list')}}",
+                    "url": "{{route('admin.product.list')}}",
                     "contentType": "application/json",
                     "type": "GET",
                     "dataType":'json',
@@ -88,7 +88,7 @@
                     },
                     "data": function ( d ) {
                         return {
-                            item_name : $('#txt_itemName_search').val(),
+                            product_name : $('#txt_productName_search').val(),
                             status : $('#cbo_status_search').val(),
                             category : $('#cbo_category_search').val(),
                         };
@@ -97,11 +97,11 @@
                 columns: [
                     {title:"No",data: null,},
                     {title: "Name",
-                        data: "item_name",
+                        data: "product_name",
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                            if(oData.item_name) {
+                            if(oData.product_name) {
                                 // $(nTd).html("<a href='/admin/category?"+oData.id+"'>"+oData.category_name+"</a>");
-                                $(nTd).html('<a href="#" onclick="openDetail('+oData.id+')">'+oData.item_name+'</a>');
+                                $(nTd).html('<a href="#" onclick="openDetail('+oData.id+')">'+oData.product_name+'</a>');
                             }
                         }
                     },

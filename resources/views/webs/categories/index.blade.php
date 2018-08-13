@@ -43,29 +43,31 @@
             @foreach($products as $pro)
                 <div class="col-xs-3">
                     <div class="product-box">
-                        <div>
-                            <img src="{{$pro['image']}}">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-color">
+                        <a href="{{route('web.product.detail')}}">
+                            <div>
+                                <img src="{{$pro['image']}}">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-color">
 
+                                </div>
+                                <div class="product-name">
+                                    <span>{{$pro['product_name']}}</span>
+                                </div>
+                                <div class="product-star">
+                                    <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;
+                                </div>
+                                <div class="price">
+                                    <span class="product-price">290,000Đ</span>
+                                    <span class="product-old-price">350,000Đ</span>
+                                    <span class="product-percent">-{{round((350000-290000)/350000*100)}}%</span>
+                                </div>
                             </div>
-                            <div class="product-name">
-                                <span>{{$pro['item_name']}}</span>
-                            </div>
-                            <div class="product-star">
-                                <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
-                                <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
-                                <i class="fa fa-star" aria-hidden="true"></i>&nbsp;
-                                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;
-                                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;
-                            </div>
-                            <div class="price">
-                                <span class="product-price">290,000Đ</span>
-                                <span class="product-old-price">350,000Đ</span>
-                                <span class="product-percent">-{{round((350000-290000)/350000*100)}}%</span>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             @endforeach

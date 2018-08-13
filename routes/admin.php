@@ -145,24 +145,24 @@ $router->group([
 });
 
 $router->group([
-    'prefix'        =>  'item',
+    'prefix'        =>  'product',
     'middleware'    =>  ['auth.admin'],
 ], function($router){
     $router->get('',[
-        'as'    =>  'admin.item.index',
-        'uses'  =>  'ItemController@index'
+        'as'    =>  'admin.product.index',
+        'uses'  =>  'ProductController@index'
     ]);
     $router->get('list',[
-        'as'    =>  'admin.item.list',
-        'uses'    =>  'ItemController@list',
+        'as'    =>  'admin.product.list',
+        'uses'    =>  'ProductController@list',
     ]);
     $router->get('detail',[
-        'as'     =>  'admin.item.detail',
-        'uses'   =>  'ItemController@detail'
+        'as'     =>  'admin.product.detail',
+        'uses'   =>  'ProductController@detail'
     ]);
     $router->post('save',[
-        'as'     =>  'admin.item.save',
-        'uses'   =>  'ItemController@save'
+        'as'     =>  'admin.product.save',
+        'uses'   =>  'ProductController@save'
     ]);
 });
 

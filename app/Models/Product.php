@@ -5,14 +5,14 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\URL;
 
-class Item extends BaseModel
+class Product extends BaseModel
 {
-    protected $table = 'items';
+    protected $table = 'products';
 
     protected $guarded = [];
 
     public function images(){
-        return $this->hasMany(ItemImage::class,'item_id');
+        return $this->hasMany(ProductImage::class,'product_id');
     }
 
     public static function boot(){

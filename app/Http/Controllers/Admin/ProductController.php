@@ -4,30 +4,30 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Http\Repositories\CategoryRepository;
 use App\Libraries\Helpers;
-use App\Models\Item;
-use App\Models\ItemImage;
+use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
-use App\Http\Repositories\ItemRepository;
+use App\Http\Repositories\ProductRepository;
 
-class ItemController extends BaseController {
-    public function __construct(Request $_request,ItemRepository $_repos)
+class ProductController extends BaseController {
+    public function __construct(Request $_request,ProductRepository $_repos)
     {
         parent::__construct($_request,$_repos);
     }
     protected $rules=[
-        'item_name'=>'required',
+        'product_name'=>'required',
         'category_id'=>'required',
         'status'=>'required',
     ];
     public function index(){
         $category = CategoryRepository::getOption();
-        return view('admins.items.index',['category'=>$category,'statusList'=>Helpers::convertCombo(STATUS_SYS)]);
+        return view('admins.products.index',['category'=>$category,'statusList'=>Helpers::convertCombo(STATUS_SYS)]);
     }
     public function detail(){
         $id = $this->request->id??null;
         $category = CategoryRepository::getOption();
-        $item = $this->repos->find($id);
-        return view('admins.items.detail',['data'=>$item,'category'=>$category,'statusList'=>Helpers::convertCombo(STATUS_SYS)]);
+        $product = $this->repos->find($id);
+        return view('admins.products.detail',['data'=>$product,'category'=>$category,'statusList'=>Helpers::convertCombo(STATUS_SYS)]);
     }
     public function list(){
         $data = $this->request;
@@ -35,13 +35,13 @@ class ItemController extends BaseController {
         return $this->respondForward(['status'=>true,'data'=>$res,'message'=>'']);
     }
     public function save(){
-        $res = ['message'=>'Item was updated successful','data'=>[],'status'=>true];
+        $res = ['message'=>'Product was updated successful','data'=>[],'status'=>true];
         $id = $this->request->id??null;
-        $name = $this->request->get('item_name');
+        $name = $this->request->get('product_name');
         $categoryId = $this->request->get('category_id');
         $status = $this->request->get('status');
         $note = $this->request->get('note');
-        $des = $this->request->get('des');
+        $desc = $this->request->get('descc');
         $imageRemoves = $this->request->get('image_remove');
 
         if($this->request->hasFile('image')){
@@ -51,11 +51,11 @@ class ItemController extends BaseController {
 //            dd($_FILES['files']['name'][$i]);
 //        }
         $dataIns = [
-            'item_name'=>$name,
+            'product_name'=>$name,
             'category_id'=>$categoryId,
             'status'=>$status,
             'note'=>$note,
-            'des'=>$des
+            'desc'=>$desc
         ];
         $validate = $this->validator($dataIns,$this->rules);
 
@@ -66,17 +66,17 @@ class ItemController extends BaseController {
             $dataIns['image']=$image['url'];
         }
         if(!empty($id)){
-            $item = $this->repos->find($id);
-            Item::where('id',$id)->update($dataIns);
+            $product = $this->repos->find($id);
+            Product::where('id',$id)->update($dataIns);
         }
         else{
-            $item = $this->repos->create($dataIns);
-            $res['message']='Item was created successful';
+            $product = $this->repos->create($dataIns);
+            $res['message']='Product was created successful';
         }
-        $res['data']=$item;
-        if($item){
+        $res['data']=$product;
+        if($product){
             $urlFiles = [];
-            $id = $item->id;
+            $id = $product->id;
 //            dd(count($_FILES['files']['name']));
             if($this->request->hasFile('files')){
                 $files = $this->request->file('files');
@@ -96,12 +96,12 @@ class ItemController extends BaseController {
                         unlink('../public'.$img);
                     }
                     catch (\Exception $e){}
-                    ItemImage::where('item_id',$id)->where('url',$img)->delete();
+                    ProductImage::where('product_id',$id)->where('url',$img)->delete();
                 }
             }
             foreach ($urlFiles as $url){
-                ItemImage::create([
-                    'item_id'=>$id,
+                ProductImage::create([
+                    'product_id'=>$id,
                     'url'=>$url,
                     'status'=>ENABLE
                 ]);
